@@ -1,0 +1,20 @@
+{
+  "name": "word-helper",
+  "version": "1.0.0",
+  "description": "Alphabet & word learning game for preschoolers, with Whisper/Piper voice support and optional AI feedback",
+  "private": true,
+  "type": "commonjs",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^2.3.0"
+  }
+}

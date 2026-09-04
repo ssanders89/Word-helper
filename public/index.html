@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Word Helper</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="app">
+
+    <header class="topbar">
+      <h1>🔤 Word Helper</h1>
+      <div id="score" class="score" hidden>Score: <span id="scoreValue">0 / 0</span></div>
+    </header>
+
+    <main>
+      <!-- Setup screen -->
+      <section id="setupScreen" class="screen">
+        <div id="statusBanner" class="banner" hidden></div>
+
+        <div class="setup-group">
+          <h2>How should we play?</h2>
+          <div class="choice-row" id="modeChoices">
+            <button type="button" class="choice-card" data-mode="picture">
+              <span class="choice-emoji">🖼️</span>
+              <span class="choice-title">See the picture</span>
+              <span class="choice-desc">Guess the letter it starts with</span>
+            </button>
+            <button type="button" class="choice-card" data-mode="audio">
+              <span class="choice-emoji">🔊</span>
+              <span class="choice-title">Hear the word</span>
+              <span class="choice-desc">Guess the letter it starts with</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="setup-group">
+          <h2>How should we answer?</h2>
+          <div class="choice-row" id="inputChoices">
+            <button type="button" class="choice-card" data-input="select">
+              <span class="choice-emoji">👉</span>
+              <span class="choice-title">Pick a letter</span>
+              <span class="choice-desc">Tap the right letter</span>
+            </button>
+            <button type="button" class="choice-card" data-input="spoken">
+              <span class="choice-emoji">🎤</span>
+              <span class="choice-title">Say it out loud</span>
+              <span class="choice-desc">Speak the letter</span>
+            </button>
+          </div>
+        </div>
+
+        <button id="startButton" class="primary-button" disabled>Start Playing!</button>
+      </section>
+
+      <!-- Game screen -->
+      <section id="gameScreen" class="screen" hidden>
+        <div class="prompt-area" id="promptArea">
+          <img id="promptImage" class="prompt-image" alt="Guess the letter" hidden />
+          <div id="audioPrompt" class="audio-prompt" hidden>
+            <button id="replayAudio" class="replay-button" type="button" aria-label="Play the word again">🔊</button>
+            <p>Listen, then guess the letter!</p>
+          </div>
+          <button id="hintButton" class="hint-button" type="button" hidden>🔊 Hear the word</button>
+        </div>
+
+        <div class="answer-area">
+          <div id="selectAnswer" class="select-answer" hidden></div>
+
+          <div id="spokenAnswer" class="spoken-answer" hidden>
+            <button id="recordButton" class="record-button" type="button">
+              <span id="recordIcon">🎤</span>
+              <span id="recordLabel">Tap to speak</span>
+            </button>
+            <p id="transcriptLine" class="transcript-line"></p>
+          </div>
+        </div>
+
+        <div id="feedback" class="feedback" hidden>
+          <p id="feedbackMessage"></p>
+          <div id="revealArea" class="reveal-area"></div>
+          <button id="nextButton" class="primary-button">Next word ➜</button>
+        </div>
+
+        <button id="quitButton" class="text-button">⟵ Change settings</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
