@@ -1,0 +1,7 @@
+node_modules/
+.env
+npm-debug.log*
+
+# Local picture library (keep the README that documents the structure)
+/pictures/*
+!/pictures/README.md

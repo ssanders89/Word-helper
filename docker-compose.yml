@@ -1,0 +1,44 @@
+services:
+  word-helper:
+    build: .
+    container_name: word-helper
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PICTURES_DIR: /pictures
+
+      # Point these at the Whisper/Piper Wyoming services already running
+      # in your stack. If they live in a different compose project, put
+      # this service on the same Docker network as them (see "networks:"
+      # below) and use their container/service names as the host.
+      WHISPER_HOST: whisper
+      WHISPER_PORT: "10300"
+      PIPER_HOST: piper
+      PIPER_PORT: "10200"
+      PIPER_VOICE: ""
+
+      # Optional AI-generated encouragement messages. Leave AI_PROVIDER=none
+      # (or unset) to just use the built-in canned phrases.
+      AI_PROVIDER: none
+      # AI_PROVIDER: anthropic
+      # ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      # AI_MODEL: claude-haiku-4-5-20251001
+      # AI_PROVIDER: local
+      # LOCAL_AI_URL: http://ollama:11434/v1/chat/completions
+      # LOCAL_AI_MODEL: llama3.1
+    volumes:
+      # Your picture library: one subfolder per letter (A, B, C, ...), each
+      # containing images that start with that letter.
+      - ./pictures:/pictures:ro
+    networks:
+      - default
+      - voice-stack
+
+networks:
+  # Replace "voice-stack" with the external network your Whisper/Piper
+  # containers are already attached to (e.g. from another compose project
+  # or a Home Assistant add-on network), so this service can reach them by
+  # container/service name.
+  voice-stack:
+    external: true
